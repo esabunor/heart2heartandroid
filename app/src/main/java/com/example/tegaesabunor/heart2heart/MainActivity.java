@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     public void makeRequest() {
         AsyncHttpClient client = new AsyncHttpClient();
         client.addHeader("Authorization", "Token 5866c11078a7558af197b7b3a6dc83718e27c781");
-        client.get("http://192.168.20.6:9000/hello/", null, new JsonHttpResponseHandler() {
+        client.get("http://192.168.20.5:9000/hello/", null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 textView.setText(response.toString());
