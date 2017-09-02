@@ -15,6 +15,9 @@ import com.loopj.android.http.*;
 
 import org.json.JSONArray;
 
+import java.io.File;
+import java.io.InputStream;
+
 import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
@@ -66,7 +69,11 @@ public class MainActivity extends AppCompatActivity {
     public void makeRequest() {
         AsyncHttpClient client = new AsyncHttpClient();
         client.addHeader("Authorization", "Token 5866c11078a7558af197b7b3a6dc83718e27c781");
-        client.get("http://192.168.20.5:9000/hello/", null, new JsonHttpResponseHandler() {
+        RequestParams params = new RequestParams();
+        params.put("name","tegaesabunor");
+        InputStream ins = getResources().openRawResource(R.raw.property5);
+        params.put("file", ins, "property5.jpg", "image/jpg");
+        client.post("http://192.168.20.5:9000/resttest/", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 textView.setText(response.toString());
